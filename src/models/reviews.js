@@ -22,6 +22,6 @@ const reviewsSchema = new mongoose.Schema({
    createdAt: { type: Date, default: Date.now }
 })
 
-const proInReview = mongoose.model('pro-in-review', reviewsSchema)
+const proInReview = mongoose.model('pro-in-reviews', reviewsSchema)
 
 module.exports = proInReview

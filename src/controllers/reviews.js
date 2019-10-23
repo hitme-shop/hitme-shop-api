@@ -1,11 +1,27 @@
 
 const reviews = require('../models/reviews')
 
-exports.getAll = async (_, res) => {
+exports.getAll = async (req, res) => {
    try {
-      let fields = "title src website cats"
-      let docRes = await reviews.find({},fields)
-      res.json(docRes)
+
+      /** Query */
+      let query = reviews.find()
+
+      /** Pagination */
+      let page = req.query.page || 1
+      let limit = 15, skip = (page - 1) * limit
+      query = query.skip(skip).limit(limit)
+
+      /** Projection */
+      let projections = "title src website cats"
+      query = query.select(projections)
+
+      /** Executing query */
+      let docRes = await query
+
+      /** Sending response */
+      res.json({ page: page, data: docRes })
+
    } catch (error) {
       res.json({
          error: true,
