@@ -6,7 +6,7 @@ const defaultError = (res, error) => {
 }
 
 const sendDistinct = async (res, field, query = {}) => {
-   try { res.json(await categories.distinct(field, query)) }
+   try { res.json((await categories.distinct(field, query)).sort()) }
    catch (error) { defaultError(res, error) }
 }
 
@@ -23,6 +23,11 @@ exports.getAll = async (_, res) => {
       res.json(data)
    }
    catch (error) { defaultError(res, error) }
+}
+
+exports.deleteAll = async (_, res) => {
+   let delRes = await categories.deleteMany()
+   res.json(delRes)
 }
 
 /** Controller related to Main Category */
@@ -44,7 +49,7 @@ exports.subWithCats = async (req, res) => {
          defaultError(res, { message: `There is no Main category named ${req.params.mCat}` })
       } else {
          let disSubs = [... new Set(cRes.map(c => c.sCat))]
-         let data = disSubs.map(sCat => ({ sCat, cats: (cRes.filter(c => c.sCat === sCat)).map(d => d.cat) }))
+         let data = disSubs.map(sCat => ({ sCat, cats: ((cRes.filter(c => c.sCat === sCat)).map(d => d.cat)).sort() }))
          res.json(data)
       }
    }
@@ -104,10 +109,18 @@ exports.getCat = async (req, res) => {
    } catch (error) { defaultError(res, error) }
 }
 exports.createCat = async (req, res) => {
+   // let crRes = await categories.insertMany(req.body)
+   // res.json(crRes)
    try {
-      await categories.init()
-      let docRes = await categories.create(req.body)
-      res.send(docRes)
+
+      if (await categories.countDocuments({
+         mCat: req.body.mCat, sCat: req.body.sCat, cat: req.body.cat
+      }).limit(1) === 0) {
+         let docRes = await categories.create(req.body)
+         res.send(docRes)
+      } else {
+         defaultError(res, { message: "Category already exists" })
+      }
    } catch (error) { defaultError(res, error) }
 }
 exports.updateCat = async (req, res) => {

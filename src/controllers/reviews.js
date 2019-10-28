@@ -16,6 +16,9 @@ exports.getAll = async (req, res) => {
       let projections = "title src website cats"
       query = query.select(projections)
 
+      /** Sort by */
+      query = query.sort('-createdAt')
+
       /** Executing query */
       let docRes = await query
 
@@ -32,7 +35,8 @@ exports.getAll = async (req, res) => {
 
 exports.get = async (req, res) => {
    try {
-      let docRes = await reviews.findOne({ _id: req.params.id })
+      let projection = "-_id title src url oPrice sPrice tags rating ratingCount website flag discount"
+      let docRes = await reviews.findOne({ _id: req.params.id }, projection)
       res.json(docRes)
    } catch (error) {
       res.json({

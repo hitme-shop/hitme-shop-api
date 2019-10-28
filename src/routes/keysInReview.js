@@ -6,6 +6,7 @@ const controller = require("../controllers/keysInReview")
 
 router.route("/")
    .get(controller.getAll)
+   .post(controller.create)
 
 router.route("/:id")
    .get(controller.get)

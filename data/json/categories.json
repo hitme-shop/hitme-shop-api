@@ -373,18 +373,6 @@
    },
    {
       "mCat": "Men's Fashion",
-      "sCat": "Punjabi",
-      "cat": "",
-      "keywords": []
-   },
-   {
-      "mCat": "Men's Fashion",
-      "sCat": "Suits & Blazer",
-      "cat": "",
-      "keywords": []
-   },
-   {
-      "mCat": "Men's Fashion",
       "sCat": "Shoes",
       "cat": "Sneakers",
       "keywords": []
@@ -541,30 +529,6 @@
    },
    {
       "mCat": "Women's Fashion",
-      "sCat": "Wedding Wears",
-      "cat": "",
-      "keywords": []
-   },
-   {
-      "mCat": "Women's Fashion",
-      "sCat": "Wedding Wears",
-      "cat": "",
-      "keywords": []
-   },
-   {
-      "mCat": "Women's Fashion",
-      "sCat": "Wedding Wears",
-      "cat": "",
-      "keywords": []
-   },
-   {
-      "mCat": "Women's Fashion",
-      "sCat": "Wedding Wears",
-      "cat": "",
-      "keywords": []
-   },
-   {
-      "mCat": "Women's Fashion",
       "sCat": "Shoes",
       "cat": "Flat Sandals",
       "keywords": []
@@ -615,18 +579,6 @@
       "mCat": "Women's Fashion",
       "sCat": "Accessories",
       "cat": "Belts",
-      "keywords": []
-   },
-   {
-      "mCat": "Women's Fashion",
-      "sCat": "Accessories",
-      "cat": "",
-      "keywords": []
-   },
-   {
-      "mCat": "Women's Fashion",
-      "sCat": "Accessories",
-      "cat": "",
       "keywords": []
    },
    {
@@ -1111,12 +1063,6 @@
    },
    {
       "mCat": "Health and Beauty",
-      "sCat": "Bath and Beauty",
-      "cat": "",
-      "keywords": []
-   },
-   {
-      "mCat": "Health and Beauty",
       "sCat": "Hair care",
       "cat": "Shampoo & Conditioner",
       "keywords": []
@@ -1201,31 +1147,7 @@
    {
       "mCat": "Health and Beauty",
       "sCat": "Skin Care",
-      "cat": "",
-      "keywords": []
-   },
-   {
-      "mCat": "Health and Beauty",
-      "sCat": "Skin Care",
       "cat": " ",
-      "keywords": []
-   },
-   {
-      "mCat": "Health and Beauty",
-      "sCat": "Skin Care",
-      "cat": "",
-      "keywords": []
-   },
-   {
-      "mCat": "Health and Beauty",
-      "sCat": "Skin Care",
-      "cat": "",
-      "keywords": []
-   },
-   {
-      "mCat": "Health and Beauty",
-      "sCat": "Skin Care",
-      "cat": "",
       "keywords": []
    },
    {
@@ -1514,18 +1436,6 @@
       "mCat": "Groceries",
       "sCat": "Dairy Bakery",
       "cat": "Bakery & Breads",
-      "keywords": []
-   },
-   {
-      "mCat": "Groceries",
-      "sCat": "Others Essentials",
-      "cat": "",
-      "keywords": []
-   },
-   {
-      "mCat": "Groceries",
-      "sCat": "Others Essentials",
-      "cat": "",
       "keywords": []
    },
    {

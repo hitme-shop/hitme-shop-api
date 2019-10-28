@@ -1,10 +1,23 @@
 
 const { keysInReview } = require("../models/categories")
 
-exports.getAll = async (req, res) => {
+exports.getAll = async (_, res) => {
    let select = "mCat sCat cat keywords"
    let docRes = await keysInReview.find({}, select)
    res.send(docRes)
+}
+
+exports.create = async (req, res) => {
+   try {
+      await keysInReview.init()
+      let createRes = await keysInReview.create(req.body)
+      res.json(createRes)
+   } catch (error) {
+      let data = { ...req.body }
+      let conditions = { mCat: data.mCat, sCat: data.sCat, cat: data.cat }
+      let updateRes = await keysInReview.updateOne(conditions, { $addToSet: { keywords: data.keywords } })
+      res.json(updateRes)
+   }
 }
 
 exports.get = async (req, res) => {

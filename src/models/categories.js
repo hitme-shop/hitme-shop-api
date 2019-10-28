@@ -1,14 +1,22 @@
 const mongoose = require('mongoose')
 
 const categoriesSchema = new mongoose.Schema({
-   mCat: String,
-   sCat: String,
+   mCat: {
+      type: String,
+      required: [true, "Main category is required!"]
+   },
+   sCat: {
+      type: String,
+      required: [true, "Sub category is required!"]
+   },
    cat: {
       type: String,
-      unique: true,
       required: [true, "Category name is required!"]
    },
-   keywords: Array
+   keywords: {
+      type: Array,
+      default: []
+   }
 })
 
 exports.categories = mongoose.model('categories', categoriesSchema)

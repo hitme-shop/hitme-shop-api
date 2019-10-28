@@ -7,6 +7,7 @@ const controller = require("../controllers/categories")
 /** Categories */
 router.route("/")
    .get(controller.getAll)
+   .delete(controller.deleteAll)
 
 /** Route related to main category */
 router.route("/main")
