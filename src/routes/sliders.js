@@ -15,11 +15,10 @@ router
    .get(sliders.get)
    .delete(sliders.delete);
 
-/** 
- * @Route /sliders/website/Pickaboo */
-router
-   .route("/:filterBy/:keyword")
-   .get(sliders.getFiltered)
+/**
+ * @Route /sliders/website/Pickaboo
+ * @Route /sliders/website/Daraz */
+router.route("/:filterBy/:keyword").get(sliders.getFiltered);
 
 /** Exporting router */
 module.exports = router;
