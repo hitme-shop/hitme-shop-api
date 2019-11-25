@@ -2,14 +2,96 @@
 <html lang="en">
 
 <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-   <title>Document</title>
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+   <title>HitmeShop | API</title>
 </head>
 
 <body>
-   <h1>Hitme shop Api</h1>
+   <div class="jumbotron">
+      <h1 class="display-4">HITME SHOP API</h1>
+      <p class="lead">
+         A comparative study and integration of social e-commerce websites
+      </p>
+      <hr class="my-4" />
+      <p>
+         <a href="https://chrome.google.com/webstore/detail/json-viewer/gbmdgpbipfallnflgajpaliibnhdgobh"
+            target="_blank">Download</a>
+         this chrome extension to preview output in JSON fotmat
+      </p>
+      <p><span>Domain : https://hitme-shop-api.herokuapp.com/</span><span> Version : v1</span></p>
+      <p>API : <a href="https://hitme-shop-api.herokuapp.com/v1/">https://hitme-shop-api.herokuapp.com/v1/</a></p>
+   </div>
+   <div>
+      <div class="container">
+         <strong>ALL ENDPOINTS</strong>
+         <div class="row m-0">
+            <div class="col-md-3">
+               <p>API / categories</p>
+               <ul class="list-group list-group-flush">
+                  <li class="list-group-item">
+                     <a href="/v1/categories">/</a>
+                  </li>
+                  <li class="list-group-item">
+                     <a href="/v1/main">/main</a><span> </span><a href="/v1/sub">/sub</a> <span> </span><a
+                        href="/v1/cat">/cat</a>
+                  </li>
+                  <li class="list-group-item">
+                     <a href="/v1/categories/main/Electronics">main/main-cat-name</a>
+                  </li>
+                  <li class="list-group-item">
+                     <a href="/v1/categories/sub/Laptops and Notebooks">sub/sub-cat-name</a>
+                  </li>
+                  <li class="list-group-item">
+                     <a href="/v1/categories/cat/Apple">cat/category-name</a>
+                  </li>
+                  <li class=" list-group-item">
+                     <a href="/v1/categories/sub-with-cats/Electronics">sub-with-cats/main-cat-name</a>
+                  </li>
+               </ul>
+            </div>
+            <div class="col-md-3">
+               <p>API / sliders</p>
+               <ul class="list-group list-group-flush">
+                  <li class="list-group-item">
+                     <a href="/v1/sliders">/</a>
+                  </li>
+                  <li class="list-group-item">
+                     <a href="/v1/sliders/5db1f4cf64648d10bbd6a319">/_id</a>
+                  </li>
+                  <li class="list-group-item">
+                     <a href="/v1/sliders/website/Daraz">/website/website-name</a>
+                  </li>
+               </ul>
+            </div>
+            <div class="col-md-3">
+               <p>API / products</p>
+               <ul class="list-group list-group-flush">
+                  <li class="list-group-item">
+                     <a href="/v1/products">/</a>
+                  </li>
+                  <li class="list-group-item">
+                     <a href="/v1/products/5dbeed27b6d6e669c51fe822">/_id</a>
+                  </li>
+               </ul>
+            </div>
+            <div class="col-md-3">
+               <p>API / reviews</p>
+               <ul class="list-group list-group-flush">
+                  <li class="list-group-item">
+                     <a href="/v1/reviews?page=1">/?page=1</a>
+                  </li>
+                  <li class="list-group-item">
+                     <a href="/v1/reviews/5dbeed27b6d6e669c51fe822">/_id</a>
+                  </li>
+               </ul>
+            </div>
+         </div>
+      </div>
+   </div>
 </body>
 
 </html>
