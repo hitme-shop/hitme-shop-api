@@ -34,6 +34,7 @@ exports.deleteAll = async (_, res) => {
 exports.getMains = (_, res) => {
    sendDistinct(res, 'mCat')
 }
+
 exports.getMain = async (req, res) => {
    try {
       let docRes = await categories.distinct("sCat", { mCat: req.params.mCat })

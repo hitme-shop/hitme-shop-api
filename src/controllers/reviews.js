@@ -57,3 +57,15 @@ exports.delete = async (req, res) => {
       })
    }
 }
+
+exports.deleteAll = async (_, res) => {
+   try {
+      let delRes = await reviews.deleteMany()
+      res.json(delRes)
+   } catch (error) {
+      res.json({
+         error: true,
+         message: error.message
+      })
+   }
+}

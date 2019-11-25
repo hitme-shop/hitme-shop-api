@@ -1,18 +1,25 @@
-
 /** PACKAGE IMPORTS */
-const express = require('express')
-const router = express.Router()
+const express = require("express");
+const router = express.Router();
 
-const sliders = require("../controllers/sliders")
+const sliders = require("../controllers/sliders");
 
 /** Categories */
-router.route("/")
+router
+   .route("/")
    .get(sliders.getAll)
-   .post(sliders.create)
+   .post(sliders.create);
 
-router.route("/:id")
+router
+   .route("/:id")
    .get(sliders.get)
-   .delete(sliders.delete)
+   .delete(sliders.delete);
+
+/** 
+ * @Route /sliders/website/Pickaboo */
+router
+   .route("/:filterBy/:keyword")
+   .get(sliders.getFiltered)
 
 /** Exporting router */
-module.exports = router
+module.exports = router;

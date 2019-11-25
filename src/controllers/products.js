@@ -46,3 +46,35 @@ exports.deleteAll = async (_, res) => {
       res.json(docRes)
    } catch (error) { defaultError(res, error) }
 }
+
+exports.compareAll = async (_, res) => {
+   try {
+
+      let proCount = await products.countDocuments()
+      console.log(proCount);
+      let page = 1
+      let limit = 100
+
+      console.log(proCount/limit);
+   
+      // while ( proCount / 100 ) {
+         
+      // }
+      
+      res.json('Compare All')
+
+   } catch (error) { defaultError(res, error) }
+}
+
+exports.compare = async (req, res) => {
+   try {
+
+      console.log(req.params.title);
+
+      (await products.find()).forEach(function (pro) {
+         console.log(pro);
+      })
+
+      res.json('docRes')
+   } catch (error) { defaultError(res, error) }
+}

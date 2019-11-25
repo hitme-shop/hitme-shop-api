@@ -7,6 +7,7 @@ const reviews = require("../controllers/reviews")
 /** Categories */
 router.route("/")
    .get(reviews.getAll)
+   .delete(reviews.deleteAll)
 
 router.route("/:id")
    .get(reviews.get)

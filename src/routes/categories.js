@@ -43,5 +43,4 @@ router.route("/cat/:cat")
    .delete(controller.deleteCat)
 /** End of category */
 
-
 module.exports = router

@@ -15,5 +15,11 @@ router.route("/:id")
    .patch(products.update)
    .delete(products.delete)
 
+router.route("/compare")
+   .get(products.compareAll)
+
+router.route("/compare/:title")
+   .get(products.compare)
+
 /** Exporting router */
 module.exports = router
