@@ -1,33 +1,68 @@
-
-const { categories } = require("../models/categories")
+const { categories } = require("../models/categories");
+const { getSubWords } = require("../helpers");
 
 const defaultError = (res, error) => {
-   res.json({ error: true, message: error.message })
-}
+   res.json({ error: true, message: error.message });
+};
 
 const updateOne = async (req, res, query) => {
-   let condition = { cat: req.params.cat }
-   try { res.json(await categories.updateOne(condition, query)) }
-   catch (error) { defaultError(res, error) }
-}
+   let condition = { cat: req.params.cat };
+   console.log(condition, query);
+   try {
+      res.json(await categories.updateOne(condition, query));
+   } catch (error) {
+      defaultError(res, error);
+   }
+};
 
 exports.get = async (req, res) => {
    try {
-      let docRes = await categories.findOne({ cat: req.params.cat }, 'keywords')
-      res.json(docRes.keywords)
+      let limit = req.query.limit ? req.query.limit * 1 : 20;
+      let skip = req.query.page ? (req.query.page * 1 - 1) * limit : 0;
+
+      console.log(skip, limit);
+
+      let docRes = await categories
+         .findOne({ cat: req.params.cat_or_id })
+         .select({ keywords: { $slice: [skip, limit] } })
+         .select("-mCat -sCat -cat -__v -_id");
+
+      res.json({ status: 200, statusText: "OK", data: docRes.keywords });
+   } catch (error) {
+      defaultError(res, error);
    }
-   catch (error) { defaultError(res, error) }
-}
+};
 
 exports.create = async (req, res) => {
-   updateOne(req, res, { keywords: req.body })
-}
+   updateOne(req, res, { keywords: req.body });
+};
 
 exports.patch = async (req, res) => {
-   updateOne(req, res, { $addToSet: { keywords: req.body } })
-}
+   try {
+      let response = await categories.updateOne(
+         { cat: req.params.cat_or_id },
+         { $addToSet: req.body }
+      );
+      res.json(response);
+   } catch (error) {
+      defaultError(res, error);
+   }
+};
 
 exports.delete = async (req, res) => {
-   console.log(req.body);
-   updateOne(req, res, { $pullAll: { keywords: req.body } })
-}
+   try {
+      let response = await categories.updateOne(
+         { cat: req.params.cat_or_id },
+         { $pull: { keywords: { $in: req.body.keywords } } }
+      );
+      res.json({
+         status: 200,
+         statusText: "OK",
+         data: response
+      });
+   } catch (error) {
+      defaultError(res, error);
+   }
+   //console.log(req.params);
+   //updateOne(req, res, { $pull: { keywords: { $in: req.body.keywords } } });
+};

@@ -7,6 +7,7 @@ const controller = require("../controllers/keysInReview")
 router.route("/")
    .get(controller.getAll)
    .post(controller.create)
+   .delete(controller.deleteAll)
 
 router.route("/:id")
    .get(controller.get)

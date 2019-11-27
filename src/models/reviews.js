@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 
 const reviewsSchema = new mongoose.Schema({
    title: String,
+   title_low: String,
    src: String,
    url: {
       type: String,
@@ -22,6 +23,6 @@ const reviewsSchema = new mongoose.Schema({
    createdAt: { type: Date, default: Date.now }
 })
 
-const proInReview = mongoose.model('pro-in-reviews', reviewsSchema)
+const inReview = mongoose.model('pro-in-review', reviewsSchema)
 
-module.exports = proInReview
+module.exports = inReview

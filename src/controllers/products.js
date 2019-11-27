@@ -6,8 +6,7 @@ const defaultError = (res, error) => {
 
 exports.getAll = async (_, res) => {
    try {
-      let projection =
-         "_id title src url sPrice oPrice discount rating ratingCount website flag cat";
+      let projection = "_id title title_low website cat";
       let docRes = await products.find({}, projection);
       res.json({ results: docRes.length, data: docRes });
    } catch (error) {

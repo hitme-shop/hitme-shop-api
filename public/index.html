@@ -8,6 +8,12 @@
    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
    <title>HitmeShop | API</title>
+
+   <style>
+      body {
+         padding-bottom: 4rem;
+      }
+   </style>
 </head>
 
 <body>
@@ -28,7 +34,7 @@
    <div>
       <div class="container">
          <strong>ALL ENDPOINTS</strong>
-         <div class="row m-0">
+         <div class="row my-0 mb-4">
             <div class="col-md-3">
                <p>API / categories</p>
                <ul class="list-group list-group-flush">
@@ -86,6 +92,27 @@
                   </li>
                   <li class="list-group-item">
                      <a href="/v1/reviews/5dbeed27b6d6e669c51fe822">/_id</a>
+                  </li>
+               </ul>
+            </div>
+         </div>
+         <div class="row my-0">
+            <div class="col-md-3">
+               <p>API / search</p>
+               <ul class="list-group list-group-flush">
+                  <li class="list-group-item">
+                     <a href="/v1/search/Samsung galaxy">/:keyword</a>
+                  </li>
+                  <li class="list-group-item">
+                     <a href="/v1/search/suggestions/vivo">/suggestions/:keyword</a>
+                  </li>
+               </ul>
+            </div>
+            <div class="col-md-3">
+               <p>API / compare</p>
+               <ul class="list-group list-group-flush">
+                  <li class="list-group-item">
+                     <a href="/v1/compare/Samsung galaxy a30">/:title</a>
                   </li>
                </ul>
             </div>
