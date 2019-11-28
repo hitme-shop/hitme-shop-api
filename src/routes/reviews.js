@@ -11,6 +11,7 @@ router.route("/")
 
 router.route("/:id")
    .get(reviews.get)
+   .post(reviews.saveToProduct)
    .delete(reviews.delete)
 
 /** Exporting router */

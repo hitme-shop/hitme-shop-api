@@ -40,7 +40,7 @@ exports.create = async (req, res) => {
 exports.patch = async (req, res) => {
    try {
       let response = await categories.updateOne(
-         { cat: req.params.cat_or_id },
+         { $or: [{ cat: req.params.cat_or_id }, { _id: req.params.cat_or_id }] },
          { $addToSet: req.body }
       );
       res.json(response);

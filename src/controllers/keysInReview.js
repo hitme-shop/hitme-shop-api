@@ -2,7 +2,7 @@ const { keysInReview } = require("../models/categories");
 
 exports.getAll = async (_, res) => {
    let select = "mCat sCat cat keywords";
-   let docRes = await keysInReview.find({}, select);
+   let docRes = await keysInReview.find({}, select).limit(5)
    res.send(docRes);
 };
 
@@ -29,9 +29,9 @@ exports.deleteAll = async (req, res) => {
    }
 };
 
-exports.get = async (req, res) => {};
+exports.get = async (req, res) => { };
 
-exports.update = async (req, res) => {};
+exports.update = async (req, res) => { };
 
 exports.delete = async (req, res) => {
    if (req.params.id.match(/^[0-9a-fA-F]{24}$/)) {
