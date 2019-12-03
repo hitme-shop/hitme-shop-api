@@ -1,9 +1,31 @@
 const { keysInReview } = require("../models/categories");
+const { S200, S404, S409, S500 } = require("../helpers/status")
 
-exports.getAll = async (_, res) => {
-   let select = "mCat sCat cat keywords";
-   let docRes = await keysInReview.find({}, select).limit(5)
-   res.send(docRes);
+exports.getAll = async (req, res) => {
+   try {
+
+      let query = keysInReview.find()
+
+      /** Limiting */
+      let limit = req.query.limit || 1
+      query = query.limit(limit)
+
+      /** Projections */
+      let select = "mCat sCat cat keywords";
+      query = query.select(select)
+
+      let docRes = await query
+
+      console.log(docRes);
+      res.send({
+         ...S200,
+         data: docRes.length === 1 ? docRes[0] : null
+      });
+
+
+   } catch (error) {
+
+   }
 };
 
 exports.create = async (req, res) => {

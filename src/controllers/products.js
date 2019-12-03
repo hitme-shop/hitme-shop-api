@@ -1,14 +1,38 @@
 const products = require("../models/products");
 
+const { S200, S500 } = require("../helpers/status")
+
 const defaultError = (res, error) => {
    res.json({ error: true, message: error.message });
 };
 
-exports.getAll = async (_, res) => {
+exports.getAll = async (req, res) => {
    try {
-      let projection = "_id title title_low website cat";
-      let docRes = await products.find({}, projection);
-      res.json({ results: docRes.length, data: docRes });
+
+      let condition = {}
+
+      req.query.cat ? condition.cat = req.query.cat : false
+      req.query.scat ? condition.sCat = req.query.scat : false
+      req.query.mcat ? condition.mCat = req.query.mcat : false
+
+      /** Defining query */
+      var query = products.find(condition)
+
+      /** projection */
+      let projection = "-__v -createdAt -updatedAt -cat -sCat -mCat -compared -title_low";
+      query = query.select(projection)
+
+      /** Pagination */
+      let page = req.query.page ? req.query.page * 1 : 1
+      let limit = 15, skip = (page - 1) * limit
+      query = query.skip(skip).limit(limit)
+
+      /** Executing query */
+      let response = await query
+
+      /** Sending response */
+      res.json({ ...S200, page: page, data: response });
+
    } catch (error) {
       defaultError(res, error);
    }
@@ -81,7 +105,7 @@ exports.compare = async (req, res) => {
    try {
       console.log(req.params.title);
 
-      (await products.find()).forEach(function(pro) {
+      (await products.find()).forEach(function (pro) {
          console.log(pro);
       });
 

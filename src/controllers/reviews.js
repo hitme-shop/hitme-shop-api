@@ -14,7 +14,7 @@ exports.getAll = async (req, res) => {
 
       /** Pagination */
       let page = req.query.page || 1
-      let limit = 15, skip = (page - 1) * limit
+      let limit = 15, skip = (page * 1 - 1) * limit
       query = query.skip(skip).limit(limit)
 
       /** Projection */

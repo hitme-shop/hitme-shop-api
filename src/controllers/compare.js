@@ -39,6 +39,7 @@ exports.compare = async (req, res) => {
 
       let words = getSubWords(req.params.title);
       let or = words.map(word => ({ title: new RegExp(word, "i") }));
+      console.log(or);
       let docs = await products
          .find({ $or: or })
          .select("title cat url");

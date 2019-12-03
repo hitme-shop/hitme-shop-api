@@ -43,6 +43,7 @@ exports.get = async (req, res) => {
       } else {
          res.json({
             ...S200,
+            results: response.length,
             data: response
          })
       }
