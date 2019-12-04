@@ -16,12 +16,10 @@ exports.getAll = async (req, res) => {
 
       let docRes = await query
 
-      console.log(docRes);
       res.send({
          ...S200,
          data: docRes.length === 1 ? docRes[0] : null
       });
-
 
    } catch (error) {
 

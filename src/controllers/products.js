@@ -24,7 +24,7 @@ exports.getAll = async (req, res) => {
       query = query.select(projection)
 
       /** Pagination */
-      let page = req.query.page ? req.query.page * 1 : 1
+      let page = req.query.page ? req.query.page * 1 : Math.round(Math.random() * (65 - 1) + 1);
       let limit = 15, skip = (page - 1) * limit
       query = query.skip(skip).limit(limit)
 
@@ -35,7 +35,13 @@ exports.getAll = async (req, res) => {
       if (format === "website") {
          response = {}
          for (let website of websites) {
-            response[website] = await products.find({ ...condition, website }).select(projection).limit(5).sort("-createdAt")
+            let skip = Math.round(Math.random() * (65 - 1) + 1)
+            response[website] = await products
+               .find({ ...condition, website })
+               .select(projection)
+               .limit(5)
+               .skip(skip)
+               .sort("-createdAt")
          }
       } else {
          response = await query
