@@ -9,6 +9,10 @@ router
    .get(controller.get)
    .post(controller.create)
    .patch(controller.patch)
-   .delete(controller.delete);
+   .delete(controller.delete)
+
+router
+   .route("/reviewed/:cat/:sCat/:mCat")
+   .patch(controller.reviewed)
 
 module.exports = router;

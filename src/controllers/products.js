@@ -1,6 +1,7 @@
 const products = require("../models/products");
 
 const { S200, S500 } = require("../helpers/status")
+const websites = ['Daraz', "Pickaboo", "Ajkerdeal"]
 
 const defaultError = (res, error) => {
    res.json({ error: true, message: error.message });
@@ -27,8 +28,18 @@ exports.getAll = async (req, res) => {
       let limit = 15, skip = (page - 1) * limit
       query = query.skip(skip).limit(limit)
 
-      /** Executing query */
-      let response = await query
+      let response = null
+
+      let format = req.query.format && req.query.format
+      console.log(format);
+      if (format === "website") {
+         response = {}
+         for (let website of websites) {
+            response[website] = await products.find({ ...condition, website }).select(projection).limit(5).sort("-createdAt")
+         }
+      } else {
+         response = await query
+      }
 
       /** Sending response */
       res.json({ ...S200, page: page, data: response });

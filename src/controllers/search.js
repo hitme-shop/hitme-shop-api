@@ -14,6 +14,8 @@ const S500 = {
    statusText: "INTERNAL SERVER ERROR"
 }
 
+const websites = ["Daraz", "Pickaboo", "Ajkerdeal"]
+
 
 exports.get = async (req, res) => {
    try {
@@ -21,32 +23,38 @@ exports.get = async (req, res) => {
       let keyword = new RegExp(req.params.keyword, "i");
 
       /** declaration of query */
-      let query = collection.find({ title: keyword });
+      let query = collection.find();
 
       /** limiting search result */
-      let limit = req.query.limit || 20;
+      let limit = req.query.limit || 5;
       query = query.limit(limit);
 
       /** projection */
       let deselect = "-__v -title_low -createdAt -updatedAt -compared"
       query = query.select(deselect)
 
-      /** Executing query */
-      let response = await query;
-
-      /** Sending response */
-      if (response.length === 0) {
-         res.json({
-            ...S404,
-            data: "Products not found!"
-         })
-      } else {
-         res.json({
-            ...S200,
-            results: response.length,
-            data: response
-         })
+      let results = {}
+      for (let website of websites) {
+         results[website] = await query.find({ title: keyword, website })
       }
+
+      //console.log(results);
+
+      /** Executing query */
+      //let response = await query.find({ title: keyword });
+
+      // /** Sending response */
+      // if (response.length === 0) {
+      //    res.json({
+      //       ...S404,
+      //       data: "Products not found!"
+      //    })
+      // } else {
+      res.json({
+         ...S200,
+         data: results
+      })
+      //}
    } catch (error) {
       res.json({
          ...S500,

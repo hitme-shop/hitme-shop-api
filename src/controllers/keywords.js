@@ -48,6 +48,14 @@ exports.patch = async (req, res) => {
       defaultError(res, error);
    }
 };
+exports.reviewed = async (req, res) => {
+   try {
+      let response = await categories.updateOne(req.params, { $addToSet: { keywords: req.body } });
+      res.json(response);
+   } catch (error) {
+      defaultError(res, error);
+   }
+};
 
 exports.delete = async (req, res) => {
    try {

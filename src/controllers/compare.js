@@ -36,13 +36,12 @@ exports.compareAll = async (_, res) => {
 
 exports.compare = async (req, res) => {
    try {
-
+      console.log(req.params);
       let words = getSubWords(req.params.title);
       let or = words.map(word => ({ title: new RegExp(word, "i") }));
-      console.log(or);
       let docs = await products
          .find({ $or: or })
-         .select("title cat url");
+         .select("-__v -createdAt -updatedAt -cat -sCat -mCat -compared -title_low");
       if (docs.length > 0) {
          let matched = []
          docs.forEach(item => {
@@ -57,7 +56,5 @@ exports.compare = async (req, res) => {
             data: matched
          })
       }
-
-
    } catch (error) { defaultError(res, error) }
 }
